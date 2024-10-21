@@ -2,7 +2,6 @@ using Microsoft.AspNetCore.Mvc;
 using Octokit;
 using System.Net.Http.Headers;
 
-
 var builder = WebApplication.CreateBuilder(args);
 
 builder.AddServiceDefaults();
@@ -11,7 +10,7 @@ var app = builder.Build();
 app.MapDefaultEndpoints();
 
 app.MapGet("/", () => "Hello Copilot!");
-string yourGitHubAppName = "BlackBeardLucabol";
+string yourGitHubAppName = "mitchghagent";
 
 string githubCopilotCompletionsUrl = 
     "https://api.githubcopilot.com/chat/completions";
@@ -26,6 +25,7 @@ app.MapPost("/agent", async (
     {
         Credentials = new Credentials(githubToken)
     };
+
     var user = await octokitClient.User.Current();
 
     userRequest.Messages.Insert(0, new Message
